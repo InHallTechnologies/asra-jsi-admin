@@ -1,0 +1,38 @@
+.entries-list-arch-container {
+    display: flex;
+    background-color: #F8F8F8;
+    padding: 10px 10px;
+    transition-duration: 0.5s;
+    border-radius: 10px;
+}
+.entries-list-arch-container:hover {
+   
+    background-color: #e0dcdc;
+    cursor: pointer;
+    border-radius: 12px;
+   
+}
+
+.entries-vac-status {
+    width: 70px;
+    height: 70px;
+}
+
+.entries-vac-details-container {
+    width: 100%;
+}
+
+.entries-vac-name {
+    font-weight: bold;
+}
+
+.entries-vac-secondary {
+    color: rgb(84, 84, 84);
+}
+
+.entries-vac-location-time-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+}

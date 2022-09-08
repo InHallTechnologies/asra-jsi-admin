@@ -1,0 +1,46 @@
+.operators-tab-container {
+    width: 100%;
+    padding: 20px 20px;
+}
+
+.tab-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.tab-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.selected-tab {
+    font-size: 1rem;
+    color: #444;
+    font-weight: 600;
+    border-bottom: #53a86b solid 3px;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.unselected-tab {
+    font-size: 1rem;
+    color: rgb(151, 151, 151);
+    font-weight: 500;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.table-container {
+    border: rgb(215, 215, 215) solid 0.8px;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.add-button {
+    
+}

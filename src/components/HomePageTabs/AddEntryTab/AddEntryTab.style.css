@@ -1,0 +1,83 @@
+.tab-container {
+    width: 100%;
+    padding: 20px 20px;
+}
+
+.add-entry-tab-main-container {
+    margin-top: 30px;
+}
+
+.entry-tab-title {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+.entry-tab-subtitle {
+    font-size: 1rem;
+    color: rgb(128, 128, 128);
+}
+
+.form-begin {
+}
+
+.entry-tab-form-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.entry-tab-form-subtitle {
+    font-size: 0.9rem;
+    color: rgb(195, 195, 195);
+}
+
+.form-snippet-container {
+    display: flex;
+}
+
+.entry-tab-form-label-container {
+    flex: 0.4;
+}
+
+.entry-tab-form-container {
+    flex: 0.6;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+}
+
+.form-action-button-container {
+    display: flex;
+    margin-top: 40px;
+    justify-content: flex-end;
+    margin-bottom: 50px;
+}
+
+.slideInRight {
+    -webkit-animation-name: slideInRight;
+    animation-name: slideInRight;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+@-webkit-keyframes slideInRight {
+    0% {
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+        visibility: visible;
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+@keyframes slideInRight {
+    0% {
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+        visibility: visible;
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}

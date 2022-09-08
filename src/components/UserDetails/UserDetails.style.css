@@ -1,0 +1,28 @@
+.user-details-strip-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.hello-label {
+    font-weight: 200;
+}
+
+.strip-operator-name {
+    font-weight: 600;
+}
+
+.asra {
+    margin-left: 20px;
+    object-fit: contain;
+}
+
+.jsi {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+
+@media (max-width: 730px) {
+    
+}

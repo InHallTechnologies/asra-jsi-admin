@@ -1,0 +1,16 @@
+.dashboard-tab-container {
+    
+}
+
+.entries-label {
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.todays-entries-list {
+    display: grid;
+    grid-gap: 5px;
+    margin-top: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
