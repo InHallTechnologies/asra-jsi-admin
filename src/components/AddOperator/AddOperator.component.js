@@ -22,12 +22,59 @@ const AddOperator = ({setActiveComponent}) => {
             alert("Operator added")
         })
     }
+    const generatePassword = async (post) => {
+        let temp = ""
+        temp += post
+        const min = Math.pow(10, (5));
+        const max = Math.pow(10, (6));
+        temp += Math.floor(Math.random() * (max - min) + min);
+        setFormData({...formData, password:temp, designation:post})
+    }
     return(
             <div className="add-entry-tab-main-container">
                 <div className="entry-tab-label-container">
                     <h2 className="entry-tab-title">Add New Operator</h2>
                     <p className="entry-tab-subtitle">Fill out the fields and press submit</p>
                 </div>
+                    <Divider mt={'30px'} mb="30px" />
+                    <div className="form-snippet-container">
+                        <div className="entry-tab-form-label-container">
+                            <h2 className="entry-tab-form-title">Operation Details</h2>
+                            <p className="entry-tab-form-subtitle">UID/District/BLock</p>
+                        </div>
+
+                        <div className="entry-tab-form-container">
+                            <div>
+                                <Text mb='2px'>District</Text>
+                                <Select placeholder='Click to select' size='sm' name='initialStatus' onChange={(event)=>{setFormData({...formData, district:event.target.value})}} value={formData.district}>
+                                    <option>Dewas</option>
+                                    <option>Rajgarh</option>
+                                    <option>Guna</option>
+                                </Select>
+                            </div>
+
+                            <div>
+                                <Text mb='2px'>Block</Text>
+                                <Select placeholder='Click to select' size='sm' name='initialStatus' onChange={(event)=>{setFormData({...formData, block:event.target.value})}} value={formData.block}>
+                                    {
+                                        getBlockList(formData.district).map((item)=> <option>{item}</option>)
+                                    }
+                                </Select>
+                            </div>
+                            <div>
+                                <Text mb='2px'>Post</Text>
+                                <Select placeholder='Click to select' size='sm' name='initialStatus' onChange={(event)=>{setFormData({...formData, designation:event.target.value}); generatePassword(event.target.value)}} value={formData.designation}>
+                                    <option>DC</option>
+                                    <option>BC</option>
+                                    <option>CC</option>
+                                </Select>
+                            </div>
+                            <div>
+                                <Text mb='2px'>Operator Code</Text>
+                                <Input placeholder='xxxx xxxx xxxx' size='sm' type={'number'} name="aadharNo" onChange={(event)=>{setFormData({...formData, key:event.target.value})}} value={formData.key} />
+                            </div>
+                        </div>
+                    </div>
                     <Divider mt={'10px'} mb={"30px"} />
                     <div className="form-snippet-container">
                         <div className="entry-tab-form-label-container">
@@ -69,50 +116,13 @@ const AddOperator = ({setActiveComponent}) => {
                             </div>
                             <div>
                                 <Text mb='2px'>Password</Text>
-                                <Input placeholder='12345678' size='sm'  name="aadharNo" onChange={(event)=>{setFormData({...formData, password:event.target.value})}} value={formData.password} />
+                                <Input placeholder='12345678' size='sm'  name="aadharNo" value={formData.password} />
                             </div>
                         </div>
                     </div>
-                    <Divider mt={'30px'} mb="30px" />
+                    
 
-                    <div className="form-snippet-container">
-                        <div className="entry-tab-form-label-container">
-                            <h2 className="entry-tab-form-title">Operation Details</h2>
-                            <p className="entry-tab-form-subtitle">UID/District/BLock</p>
-                        </div>
-
-                        <div className="entry-tab-form-container">
-                            <div>
-                                <Text mb='2px'>District</Text>
-                                <Select placeholder='Click to select' size='sm' name='initialStatus' onChange={(event)=>{setFormData({...formData, district:event.target.value})}} value={formData.district}>
-                                    <option>Dewas</option>
-                                    <option>Rajgarh</option>
-                                    <option>Guna</option>
-                                </Select>
-                            </div>
-
-                            <div>
-                                <Text mb='2px'>Block</Text>
-                                <Select placeholder='Click to select' size='sm' name='initialStatus' onChange={(event)=>{setFormData({...formData, block:event.target.value})}} value={formData.block}>
-                                    {
-                                        getBlockList(formData.district).map((item)=> <option>{item}</option>)
-                                    }
-                                </Select>
-                            </div>
-                            <div>
-                                <Text mb='2px'>Post</Text>
-                                <Select placeholder='Click to select' size='sm' name='initialStatus' onChange={(event)=>{setFormData({...formData, designation:event.target.value})}} value={formData.designation}>
-                                    <option>DC</option>
-                                    <option>BC</option>
-                                    <option>CC</option>
-                                </Select>
-                            </div>
-                            <div>
-                                <Text mb='2px'>Operator Code</Text>
-                                <Input placeholder='xxxx xxxx xxxx' size='sm' type={'number'} name="aadharNo" onChange={(event)=>{setFormData({...formData, key:event.target.value})}} value={formData.key} />
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div className="form-action-button-container">
                         <Button variant={'outline'} disabled={loading} onClick={()=>{setActiveComponent("LIST")}}>Back</Button>
                         <Button onClick={handleSubmit} color={'white'} disabled={loading} backgroundColor={"#53A86B"} ml='20px' width={'200px'}>Submit</Button>
