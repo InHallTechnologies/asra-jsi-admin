@@ -71,7 +71,7 @@ const AddOperator = ({setActiveComponent}) => {
                             </div>
                             <div>
                                 <Text mb='2px'>Operator Code</Text>
-                                <Input placeholder='xxxx xxxx xxxx' size='sm' name="aadharNo" onChange={(event)=>{setFormData({...formData, key:event.target.value})}} value={formData.key} />
+                                <Input placeholder='xxxx xxxx xxxx' size='sm' name="aadharNo" onChange={(event)=>{setFormData({...formData, key:event.target.value.toUpperCase()})}} value={formData.key} />
                             </div>
                         </div>
                     </div>

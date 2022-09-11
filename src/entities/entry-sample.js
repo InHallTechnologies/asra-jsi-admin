@@ -33,6 +33,7 @@ export const getBlockList = district => {
             "Tonkhurd",
             "Kannod",
             "Khategaon",
+            "Bagli"
         ])
     }
 
