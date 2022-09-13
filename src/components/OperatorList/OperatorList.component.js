@@ -22,18 +22,20 @@ const OperatorList = ({operatorList}) => {
                         <Th>Block</Th>
                         <Th>Designation</Th>
                         <Th>Mobile No.</Th>
+                        <Th>Password</Th>
                     </Tr></Thead>
                     
                         {
                             operatorList.map((item, index)=>{
                                 return(
-                                    <Tbody>
+                                    <Tbody style={{cursor:"pointer"}}>
                                         <Tr key={item.key}>
                                             <Td>{item.key}</Td>
                                             <Td>{item.name}</Td>
                                             <Td>{item.district}</Td>
                                             <Td>{item.designation}</Td>
                                             <Td>{item.mobileNo}</Td>
+                                            <Td>{item.password}</Td>
                                         </Tr>
                                 </Tbody>
                             )})
