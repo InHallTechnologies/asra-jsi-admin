@@ -7,10 +7,11 @@ import { GiPodiumWinner } from 'react-icons/gi';
 import logo from "../../assets/logo.png"
 import { FaTheaterMasks, FaArrowAltCircleUp } from 'react-icons/fa';
 import { useNavigate, useParams } from "react-router-dom";
+import { firebaseAuth } from "../../backend/firebase-handler";
 const OperatorsTab = React.lazy(()=>import("../../components/HomePageTabs/OperatorsTab/OperatorsTab.components"));
 const DashboardTab = React.lazy(() => import("../../components/HomePageTabs/DashboardTab/DashboardTab.component"));
-const AddEntryTab = React.lazy(() => import("../../components/HomePageTabs/AddEntryTab/AddEntryTab.component"));
-
+const ViewEnteriesTab = React.lazy(() => import("../../components/HomePageTabs/ViewEnteriesTab/ViewEntriesTab.component"));
+const MeetingsTab = React.lazy(() => import("../../components/HomePageTabs/MeetingsTab/MeetingsTab.component"));
 
 const HomePage = () =>{
     const routes = useParams();
@@ -34,7 +35,7 @@ const HomePage = () =>{
                             <p className="home-page-options-label">Dashboard</p>
                         </div>
 
-                        <div className="homepage-sidebar-options" onClick={_ => handleNavigate("add-entry")} >
+                        <div className="homepage-sidebar-options" onClick={_ => handleNavigate("view-entries")} >
                             <MdAddCircle size={23} color="white" />
                             <p className="home-page-options-label">Entries</p>
                         </div>
@@ -45,9 +46,9 @@ const HomePage = () =>{
                         </div>
                         <div className="homepage-sidebar-options">
                             <FaArrowAltCircleUp size={22} color="white" />
-                            <p className="home-page-options-label">Blocks & Villages</p>
+                            <p className="home-page-options-label">Training and Centers</p>
                         </div>
-                        <div className="homepage-sidebar-options">
+                        <div className="homepage-sidebar-options" onClick={_ => handleNavigate("meetings")}>
                             <SiGotomeeting size={23} color="white" />
                             <p className="home-page-options-label">Meetings</p>
                         </div>
@@ -59,6 +60,10 @@ const HomePage = () =>{
                             <FaTheaterMasks size={23} color="white" />
                             <p className="home-page-options-label">Street Plays</p>
                         </div>
+                        <div className="homepage-sidebar-options" onClick={()=>{firebaseAuth.signOut()}}>
+                            <FaTheaterMasks size={23} color="white" />
+                            <p className="home-page-options-label">Signout</p>
+                        </div>
                     </div>
                 </div>
                 <div className="homepage-content-container">
@@ -68,14 +73,19 @@ const HomePage = () =>{
                         <DashboardTab />
                     }
                     {
-                        routes.selectedTab === "add-entry"
+                        routes.selectedTab === "view-entries"
                         &&
-                        <AddEntryTab />
+                        <ViewEnteriesTab />
                     }
                     {
                         routes.selectedTab === "operators"
                         &&
                         <OperatorsTab />
+                    }
+                    {
+                        routes.selectedTab === "meetings"
+                        &&
+                        <MeetingsTab />
                     }
 
                 </div>

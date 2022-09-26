@@ -12,7 +12,7 @@ const UserDetails = () => {
                 <div className="user-details-strip-name-container">
                     
                     <p className="hello-label">Hello,</p>
-                    <h2 className="strip-operator-name">Krati Shrivastava</h2>
+                    <h2 className="strip-operator-name">Admin</h2>
                 </div>
             </div>
             

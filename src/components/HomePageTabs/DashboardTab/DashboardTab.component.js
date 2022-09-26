@@ -6,7 +6,15 @@ import './DashboardTab.style.css';
 
 const DashboardTab = () => {
     const [entries, setEntries] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    const [picture, setPicture] = useState("")
 
+    const onImageChange = event => {
+        if (event.target.files && event.target.files[0]) {
+          let img = event.target.files[0];
+          setPicture(URL.createObjectURL(img))
+        }
+      };
+    
     return (
         <Suspense>
             <div className="dashboard-tab-container tab-container ">

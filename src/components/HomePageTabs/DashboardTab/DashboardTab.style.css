@@ -1,5 +1,6 @@
 .dashboard-tab-container {
-    
+    display: flex;
+    flex-direction: column;
 }
 
 .entries-label {

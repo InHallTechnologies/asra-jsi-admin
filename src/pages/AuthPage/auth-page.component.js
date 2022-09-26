@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import "./auth-page.style.css"
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { firebaseAuth } from "../../backend/firebase-handler";
 import { Button, ButtonGroup, Input } from '@chakra-ui/react';
 import illustration from "../../assets/login_illustration.png";
@@ -8,23 +8,34 @@ import asraLogo from "../../assets/asra_logo.png";
 import jsiLogo from "../../assets/jsi_logo.jpg";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import context from "../../context/app-context";
+import USER_SAMPLE from "../../entities/user-sample";
+import UserDetails from "../../components/UserDetails/UserDetails.component";
 
 const AuthPage = () => {
 
     const [emailId, setEmailId] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const [userDetails, setUserDetails] = useState(USER_SAMPLE)
     const navigate = useNavigate()
+    const accessMap = {"asra-jsi-admin@asrango.org":"ADMIN", "7828334945@asrango.org":"Dewas", "9406583434@asrango.org":"Guna", "9926379329@asrango.org":"Rajgarh"}
 
     const handleLogin = () => {
         setLoading(true);
-        signInWithEmailAndPassword(firebaseAuth, emailId, password).then(() => {
-            navigate('/')
+        if (emailId === "asra-jsi-admin@asrango.org" || emailId==="7828334945@asrango.org" || emailId==="9406583434@asrango.org" || emailId==="9926379329@asrango.org") {
+            signInWithEmailAndPassword(firebaseAuth, emailId, password).then(() => {
+                setUserDetails({...UserDetails, emailId:emailId, accessType:accessMap.emailId})
+                navigate('/')
+                setLoading(false);
+            }).catch((err) => {
+                setLoading(false);
+                toast(err.message);
+            })
+        } else {
             setLoading(false);
-        }).catch((err) => {
-            setLoading(false);
-            toast(err.message);
-        })
+            toast("Access Denied");
+        }
     }
 
     return(

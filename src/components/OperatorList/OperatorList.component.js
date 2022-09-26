@@ -9,7 +9,6 @@ const OperatorList = ({operatorList}) => {
     //     setList([...operatorList])
     //     // console.log(operatorList)
     // },[operatorList])
-    console.log(operatorList)
 
 
     return(
