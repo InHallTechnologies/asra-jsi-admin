@@ -3,6 +3,7 @@ import { async } from "@firebase/util";
 import { child, get, ref } from "firebase/database";
 import moment from "moment/moment";
 import React, { useContext, useEffect, useState } from "react";
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from "recharts";
 import { firebasedatabase } from "../../../backend/firebase-handler";
 import context from "../../../context/app-context";
 import { getBlockList } from "../../../entities/entry-sample";
@@ -99,7 +100,20 @@ const ViewEntriesTab = () => {
                 <Button style={{marginBottom:0}} onClick={handleSearch}>Search</Button> */}
             </div>
 
-            {/* <DashboardGraph /> */}
+            <div  className='dashboard-graph-container'>
+                <p className="section-heading">This Week in {block}</p>
+                <div style={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"center"}}>
+                    
+                    <BarChart width={1000} height={300} data={[{name:"ad", value:10}]} margin={{ top: 20, right: 30, left: 20, bottom: 5}}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="value" stackId="a" fill="#8884d8" />
+                    </BarChart>
+                </div>
+            </div>
 
             <div className="entries-list">
                 <TableContainer className="table-container">

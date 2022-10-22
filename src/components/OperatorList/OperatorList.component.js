@@ -31,7 +31,7 @@ const OperatorList = ({operatorList}) => {
                                         <Tr key={item.key}>
                                             <Td>{item.key}</Td>
                                             <Td>{item.name}</Td>
-                                            <Td>{item.district}</Td>
+                                            <Td>{item.block}</Td>
                                             <Td>{item.designation}</Td>
                                             <Td>{item.mobileNo}</Td>
                                             <Td>{item.password}</Td>

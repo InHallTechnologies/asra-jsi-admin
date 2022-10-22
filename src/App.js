@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage/home-page.component';
 import { ref, set } from 'firebase/database';
 import { firebaseAuth, firebasedatabase } from './backend/firebase-handler';
 import AuthPage from './pages/AuthPage/auth-page.component';
+import OperatorEntries from './pages/OperatorEntries/OperatorEntries.component';
 
 function App() {
 
@@ -20,7 +21,9 @@ function App() {
       <Routes>
         <Route path='/login' element={<AuthPage />} />
         <Route path="/" element={<Navigate to={'/dashboard'} replace />} />
+        <Route path="/Home/OperatorEntries" element={<OperatorEntries />} />
         <Route path="/:selectedTab" element={<HomePage />} />
+      
       </Routes>
     </div>
   );

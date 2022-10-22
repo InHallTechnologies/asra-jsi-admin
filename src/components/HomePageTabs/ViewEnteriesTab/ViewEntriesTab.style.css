@@ -4,6 +4,23 @@
     overflow-y: scroll;
 }
 
+.dashboard-graph-container {
+    width: 100%;
+    background-color: #F8F8F8;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 350px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.section-heading {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
 .tab-container {
     display: flex;
     flex-direction: row;

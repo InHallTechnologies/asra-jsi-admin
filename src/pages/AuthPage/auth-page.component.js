@@ -20,12 +20,13 @@ const AuthPage = () => {
     const [userDetails, setUserDetails] = useState(USER_SAMPLE)
     const navigate = useNavigate()
     const accessMap = {"asra-jsi-admin@asrango.org":"ADMIN", "7828334945@asrango.org":"Dewas", "9406583434@asrango.org":"Guna", "9926379329@asrango.org":"Rajgarh"}
+    const nameMap = {"asra-jsi-admin@asrango.org":"Asra", "7828334945@asrango.org":"Ajay Songara", "9406583434@asrango.org":"Ravindra Bhargava", "9926379329@asrango.org":"Pawan Soni"}
 
     const handleLogin = () => {
         setLoading(true);
         if (emailId === "asra-jsi-admin@asrango.org" || emailId==="7828334945@asrango.org" || emailId==="9406583434@asrango.org" || emailId==="9926379329@asrango.org") {
             signInWithEmailAndPassword(firebaseAuth, emailId, password).then(() => {
-                setUserDetails({...UserDetails, emailId:emailId, accessType:accessMap.emailId})
+                setUserDetails({...UserDetails, emailId:emailId, accessType:accessMap.emailId, name:nameMap.emailId})
                 navigate('/')
                 setLoading(false);
             }).catch((err) => {

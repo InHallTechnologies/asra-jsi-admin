@@ -49,7 +49,6 @@ const DashboardGraph = () => {
         },
     ];
 
-    
     return (
         <div className='dashboard-graph-container'>
             <ResponsiveContainer width="100%" height="100%">

@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import './UserDetails.style.css';
 import asra from '../../assets/asra_logo.png';
 import jsi from '../../assets/jsi_logo.jpg';
 import logo from "../../assets/logo.png"
+import context from "../../context/app-context";
 
 const UserDetails = () => {
+
+    const [userData, setUserData] = useContext(context)
+
     return(
         <div className="user-details-strip-container">
             <div>
@@ -12,7 +16,7 @@ const UserDetails = () => {
                 <div className="user-details-strip-name-container">
                     
                     <p className="hello-label">Hello,</p>
-                    <h2 className="strip-operator-name">Admin</h2>
+                    <h2 className="strip-operator-name">{userData.name}</h2>
                 </div>
             </div>
             
