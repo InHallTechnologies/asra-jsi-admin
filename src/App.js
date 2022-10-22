@@ -17,23 +17,24 @@ function App() {
   // }, [])
 
   return (
-    <div className="App">
-      <Routes>
-        <Route path='/login' element={<AuthPage />} />
-        <Route path="/" element={<Navigate to={'/dashboard'} replace />} />
-        <Route path="/Home/OperatorEntries" element={<OperatorEntries />} />
-        <Route path="/:selectedTab" element={<HomePage />} />
-      
-      </Routes>
-    </div>
+    <Routes>
+      <Route path='/login' element={<AuthPage />} />
+      <Route path="/" element={<Navigate to={'/dashboard'} replace />} />
+      <Route path="/Home/OperatorEntries" element={<OperatorEntries />} />
+      <Route path="/:selectedTab" element={<HomePage />} />
+
+    </Routes>
   );
 }
 
+
+// export default App
+
 export default () => {
-  return(
+  return (
     <Provider>
       <ChakraProvider>
-        <App/>
+        <App />
       </ChakraProvider>
     </Provider>
   )
