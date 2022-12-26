@@ -23,6 +23,8 @@ const HomePage = () =>{
             navigate(`/${route}`)
         })
     }
+
+
     return(
         <AuthBox>
             <div className="homepage-main-container">
@@ -52,11 +54,11 @@ const HomePage = () =>{
                             <SiGotomeeting size={23} color="white" />
                             <p className="home-page-options-label">Meetings</p>
                         </div>
-                        <div className="homepage-sidebar-options">
+                        <div className="homepage-sidebar-options" onClick={_ => handleNavigate("success-stories")}>
                             <GiPodiumWinner size={23} color="white" />
                             <p className="home-page-options-label">Success Stories</p>
                         </div>
-                        <div className="homepage-sidebar-options">
+                        <div className="homepage-sidebar-options" onClick={_ => handleNavigate("street-plays")}>
                             <FaTheaterMasks size={23} color="white" />
                             <p className="home-page-options-label">Street Plays</p>
                         </div>
@@ -85,7 +87,17 @@ const HomePage = () =>{
                     {
                         routes.selectedTab === "meetings"
                         &&
-                        <MeetingsTab />
+                        <MeetingsTab type = {"meetings"} />
+                    }
+                    {
+                        routes.selectedTab === "success-stories"
+                        &&
+                        <MeetingsTab type = {"success-stories"} />
+                    }
+                    {
+                        routes.selectedTab === "street-plays"
+                        &&
+                        <MeetingsTab type = {"street-plays"} />
                     }
 
                 </div>

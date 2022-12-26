@@ -1,7 +1,6 @@
 .view-entries-container {
     width: 100%;
     padding: 20px 20px;
-    overflow-y: scroll;
 }
 
 .dashboard-graph-container {
@@ -11,7 +10,7 @@
     border-radius: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
-    height: 350px;
+    height: 650px;
     padding-right: 10px;
     padding-left: 10px;
 }

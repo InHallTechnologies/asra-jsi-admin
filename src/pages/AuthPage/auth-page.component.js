@@ -19,14 +19,16 @@ const AuthPage = () => {
     const [loading, setLoading] = useState(false);
     const [userDetails, setUserDetails] = useState(USER_SAMPLE)
     const navigate = useNavigate()
-    const accessMap = {"asra-jsi-admin@asrango.org":"ADMIN", "7828334945@asrango.org":"Dewas", "9406583434@asrango.org":"Guna", "9926379329@asrango.org":"Rajgarh"}
-    const nameMap = {"asra-jsi-admin@asrango.org":"Asra", "7828334945@asrango.org":"Ajay Songara", "9406583434@asrango.org":"Ravindra Bhargava", "9926379329@asrango.org":"Pawan Soni"}
+    const accessMap = {"asra-jsi-admin@asrango.org":"ADMIN", "8966887272@asrango.org":"Dewas", "9406583434@asrango.org":"Guna", "9111919982@asrango.org":"Rajgarh"}
+    const nameMap = {"asra-jsi-admin@asrango.org":"Asra", "8966887272@asrango.org":"Rohit Singh", "9406583434@asrango.org":"Ravindra Bhargava", "9111919982@asrango.org":"Imran Khan"}
 
     const handleLogin = () => {
         setLoading(true);
-        if (emailId === "asra-jsi-admin@asrango.org" || emailId==="7828334945@asrango.org" || emailId==="9406583434@asrango.org" || emailId==="9926379329@asrango.org") {
+        if (emailId === "asra-jsi-admin@asrango.org" || emailId==="8966887272@asrango.org" || emailId==="9406583434@asrango.org" || emailId==="9111919982@asrango.org") {
             signInWithEmailAndPassword(firebaseAuth, emailId, password).then(() => {
                 setUserDetails({...UserDetails, emailId:emailId, accessType:accessMap.emailId, name:nameMap.emailId})
+                console.log("dada")
+                console.log(userDetails)
                 navigate('/')
                 setLoading(false);
             }).catch((err) => {

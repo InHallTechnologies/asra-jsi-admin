@@ -20,7 +20,7 @@ function App() {
     <Routes>
       <Route path='/login' element={<AuthPage />} />
       <Route path="/" element={<Navigate to={'/dashboard'} replace />} />
-      <Route path="/Home/OperatorEntries" element={<OperatorEntries />} />
+      <Route path="/operators/operator-entries" element={<OperatorEntries />} />
       <Route path="/:selectedTab" element={<HomePage />} />
 
     </Routes>

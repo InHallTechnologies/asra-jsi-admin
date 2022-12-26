@@ -44,8 +44,7 @@ const OperatorsTab = () => {
         
     }, [])
     return (
-        <Suspense fallback={<div>LOADING</div>}>
-            <div className="operators-tab-container">
+        <div className="operators-tab-container">
                 <UserDetails/>
 
                 {
@@ -78,7 +77,6 @@ const OperatorsTab = () => {
 
                 
             </div>
-        </Suspense>
     )
 }
 

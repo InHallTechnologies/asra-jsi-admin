@@ -28,6 +28,7 @@ const SAMPLE_ENTRY = {
 export const getBlockList = district => {
     if (district === "Dewas") {
         return ([
+            "All Blocks",
             "Dewas",
             "Sonkatch",
             "Tonkhurd",
@@ -39,6 +40,7 @@ export const getBlockList = district => {
 
     if (district === "Rajgarh") {
         return ([
+            "All Blocks",
             "Biaora",
             "Jirapur",
             "Khilchipur",
@@ -51,6 +53,7 @@ export const getBlockList = district => {
 
     if (district === "Guna") {
         return ([
+            "All Blocks",
             "Guna",
             "Raghogarh",
             "Aron",

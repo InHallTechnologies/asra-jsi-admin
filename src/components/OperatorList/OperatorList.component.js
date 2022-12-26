@@ -1,8 +1,12 @@
 import React from "react";
 import './OperatorList.style.css'
 import { Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const OperatorList = ({operatorList}) => {
+
+    const navigate = useNavigate()
+
     // const [list, setList] = useState([]);
 
     // useEffect(()=>{
@@ -27,7 +31,7 @@ const OperatorList = ({operatorList}) => {
                         {
                             operatorList.map((item, index)=>{
                                 return(
-                                    <Tbody style={{cursor:"pointer"}}>
+                                    <Tbody style={{cursor:"pointer"}} onClick={()=>{navigate("/operators/operator-entries", {state:{operatorDetails:item}})}} >
                                         <Tr key={item.key}>
                                             <Td>{item.key}</Td>
                                             <Td>{item.name}</Td>

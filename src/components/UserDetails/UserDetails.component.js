@@ -9,6 +9,8 @@ const UserDetails = () => {
 
     const [userData, setUserData] = useContext(context)
 
+    console.log(userData)
+
     return(
         <div className="user-details-strip-container">
             <div>

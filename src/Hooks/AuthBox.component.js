@@ -9,8 +9,8 @@ const AuthBox = ({children, className, loginScreen}) => {
     const [authenticated, setAuthenticated] = useState(false);
     const [userDetails, setUserDetails] = useContext(context)
     const navigate = useNavigate();
-    const accessMap = {"asra-jsi-admin@asrango.org":"ADMIN", "7828334945@asrango.org":"Dewas", "9406583434@asrango.org":"Guna", "9926379329@asrango.org":"Rajgarh"}
-    const nameMap = {"asra-jsi-admin@asrango.org":"Asra", "7828334945@asrango.org":"Ajay Songara", "9406583434@asrango.org":"Ravindra Bhargava", "9926379329@asrango.org":"Pawan Soni"}
+    const accessMap = {"asra-jsi-admin@asrango.org":"ADMIN", "8966887272@asrango.org":"Dewas", "9406583434@asrango.org":"Guna", "9111919982@asrango.org":"Rajgarh"}
+    const nameMap = {"asra-jsi-admin@asrango.org":"Asra", "8966887272@asrango.org":"Rohit Singh", "9406583434@asrango.org":"Ravindra Bhargava", "9111919982@asrango.org":"Imran Khan"}
 
     useEffect(() => {
         onAuthStateChanged(firebaseAuth, (user) => {
