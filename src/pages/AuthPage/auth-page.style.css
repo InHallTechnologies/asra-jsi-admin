@@ -56,6 +56,12 @@
     align-items: center;
 }
 
+.usaid {
+    height: 45px;
+    width: 70px;
+    margin-right: 20px;
+}
+
 
 @media (max-width:1000px) {
     .auth-container {

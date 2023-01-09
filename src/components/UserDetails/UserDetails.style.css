@@ -23,6 +23,12 @@
     object-fit: contain;
 }
 
+.usaid {
+    height: 45px;
+    width: 70px;
+    margin-right: 20px;
+}
+
 @media (max-width: 730px) {
     
 }

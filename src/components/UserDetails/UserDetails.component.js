@@ -4,6 +4,8 @@ import asra from '../../assets/asra_logo.png';
 import jsi from '../../assets/jsi_logo.jpg';
 import logo from "../../assets/logo.png"
 import context from "../../context/app-context";
+import usiadLogo from "../../assets/usaid_logo.jpg"
+import momentumLogo from "../../assets/momentum_logo.jpg"
 
 const UserDetails = () => {
 
@@ -24,6 +26,8 @@ const UserDetails = () => {
             
 
             <div className="logo-container">
+                <img className="logo usaid"  src={usiadLogo} alt="USAID" />
+                <img className="logo usaid"  src={momentumLogo} alt="Momentum" />
                 <img className="logo jsi"  src={jsi} alt="John Snow, Inc" />
                 <img  className="logo asra" src={asra} alt="Asra Samajik Lok Kalyan Samiti" />
             </div>

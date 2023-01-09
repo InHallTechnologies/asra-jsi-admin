@@ -11,6 +11,8 @@ import { ToastContainer, toast } from "react-toastify";
 import context from "../../context/app-context";
 import USER_SAMPLE from "../../entities/user-sample";
 import UserDetails from "../../components/UserDetails/UserDetails.component";
+import usiadLogo from "../../assets/usaid_logo.jpg"
+import momentumLogo from "../../assets/momentum_logo.jpg"
 
 const AuthPage = () => {
 
@@ -50,6 +52,8 @@ const AuthPage = () => {
                 <div className="auth-box">
 
                     <div className="logo-container">
+                        <img className="logo usaid"  src={usiadLogo} alt="USAID" />
+                        <img className="logo usaid"  src={momentumLogo} alt="Momentum" />
                         <img src={jsiLogo} alt="John Snow, Inc." className="logo" style={{ marginRight: 10 }} />
                         <img src={asraLogo} alt="Asra Samajik Lok Kalyan Samiti" className="logo" />
                     </div>
