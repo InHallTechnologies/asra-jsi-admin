@@ -14,6 +14,8 @@ const OperatorEntries = () =>{
     const location = useLocation()
     const [operator, setOperator] = useState(location.state.operatorDetails)
     const [entriesList, setEntriesList] = useState([])
+    const [idenList, setIdenList] = useState([])
+    const [vaccList, setVaccList] = useState([])
     const dateDay = moment().format('MMMM Do YYYY - dddd');
     let currentDateObj = new Date();
     currentDateObj.setDate(currentDateObj.getDate() - (currentDateObj.getDay() + 2) % 7);
@@ -35,8 +37,9 @@ const OperatorEntries = () =>{
         moment(currentDateObj).add('5', 'days').format('YYYY-MM-DD'),
         moment(currentDateObj).add('6', 'days').format('YYYY-MM-DD')
     ];
-    console.log(dateArray2)
+   
     const [weeklyDate, setWeeklyData] = useState([{name:dateArray[0], Achieved:0, Target:27}, {name:dateArray[1], Achieved:0, Target:27}, {name:dateArray[2], Achieved:0, Target:27}, {name:dateArray[3], Achieved:0, Target:27}, {name:dateArray[4], Achieved:0, Target:27}, {name:dateArray[5], Achieved:0, Target:27}, {name:dateArray[6], Achieved:0, Target:27}])
+    const [weeklyIdenDate, setWeeklyIdenData] = useState([{name:dateArray[0], Achieved:0}, {name:dateArray[1], Achieved:0}, {name:dateArray[2], Achieved:0}, {name:dateArray[3], Achieved:0}, {name:dateArray[4], Achieved:0}, {name:dateArray[5], Achieved:0}, {name:dateArray[6], Achieved:0}])
     const [genderData, setGenderData] = useState([{name:"Male", value:0}, {name:"Female", value:0}, {name:"Other", value:0}])
     const [vaccineData, setVaccineData] = useState([{name:"", value:0}, {name:"", value:0}, {name:"", value:0}, {name:"", value:0}, {name:"", value:0}, {name:"", value:0}])
     const [doseData, setDoseData] = useState([{name:"", value:0}, {name:"", value:0}, {name:"", value:0}])
@@ -46,164 +49,14 @@ const OperatorEntries = () =>{
     const [todaysVaccinations, setTodaysVaccinations] = useState(0)
     const [totalIdentifications, setTotalIdentifications] = useState(0)
     const [weeksTotal, setWeeksTotal] = useState(0)
+    const [selectedTab, setSelectedTab] = useState("VACC")
 
     useEffect(() => {
-
-        // console.log("in here")
-        // let count  = 0;
-        // const tasks = []
-        // get(child(ref(firebasedatabase), "USER_WISE_ENTRIES")).then(async(snapShot) => {
-           
-        //     if (snapShot.exists()) {
-        //         for (const uid in snapShot.val()) {
-        //             for (const key in snapShot.child(uid).val()) {
-        //                 const entry = snapShot.child(uid).child(key).val()
-        //                 console.log(entry.key)
-        //                 if (entry.firstUpdateDate && entry.firstUpdateVaccine && entry.firstUpdateStatus) {
-        //                     let formattedDate = moment(entry.firstUpdateDate).format('MMMM Do YYYY - dddd')
-        //                     const writeRef = ref(firebasedatabase, `DATE_WISE_VACCINATION_DATA/${formattedDate}/${entry.district}/${entry.block}`);
-        //                     const promise = new Promise(async (resolve, reject) => {
-        //                         await runTransaction(writeRef, (currentData)=>{
-        //                             if (currentData) {
-        //                                 if (currentData.value) {
-        //                                     currentData.value += 1
-        //                                 } else {
-        //                                     currentData.value = 1
-        //                                 }
-        //                                 if (currentData.gender[entry.gender]) {
-        //                                     currentData.gender[entry.gender] += 1
-        //                                 }else {
-        //                                     currentData.gender[entry.gender] = 1
-        //                                 }
-        //                                 if (currentData.dose[entry.firstUpdateStatus]) {
-        //                                     currentData.dose[entry.firstUpdateStatus] += 1
-        //                                 }else {
-        //                                     currentData.dose[entry.firstUpdateStatus] = 1
-        //                                 }
-        //                                 if (currentData.vaccine[entry.firstUpdateVaccine]) {
-        //                                     currentData.vaccine[entry.firstUpdateVaccine] += 1
-        //                                 }else {
-        //                                     currentData.vaccine[entry.firstUpdateVaccine] = 1
-        //                                 }
-                                        
-        //                                 resolve(currentData)
-        //                                 return currentData;
-        //                             } else {
-        //                                 let temp = {value:0, gender:{"Male":0, "Female":0, "Others":0}, vaccine:{"Covaxin":0, "Covishield":0, "Sputnik":0, "Zycov-D":0, "Covovax":0, "Corbevax":0}, dose:{"1st Dose":0, "2nd Dose":0, "Precautionary Dose":0}}
-        //                                 temp.value = 1
-        //                                 temp.gender[entry.gender] = 1
-        //                                 temp.dose[entry.firstUpdateStatus] = 1
-        //                                 temp.vaccine[entry.firstUpdateVaccine] = 1
-        //                                 resolve(temp)
-        //                                 return temp;
-        //                             }
-                                    
-        //                         })
-        //                     })
-        //                     tasks.push(promise);
-                                
-        //                 }
-
-        //                 if (entry.secondUpdateDate && entry.secondUpdateStatus && entry.secondUpdateVaccine) {
-        //                     let formattedDate = moment(entry.secondUpdateDate).format('MMMM Do YYYY - dddd')
-        //                     const writeRef = ref(firebasedatabase, `DATE_WISE_VACCINATION_DATA/${formattedDate}/${entry.district}/${entry.block}`);
-        //                     const promise = new Promise(async (resolve, reject) => {
-        //                         await runTransaction(writeRef, (currentData)=>{
-        //                             if (currentData) {
-        //                                 if (currentData.value) {
-        //                                     currentData.value += 1
-        //                                 } else {
-        //                                     currentData.value = 1
-        //                                 }
-        //                                 if (currentData.gender[entry.gender]) {
-        //                                     currentData.gender[entry.gender] += 1
-        //                                 }else {
-        //                                     currentData.gender[entry.gender] = 1
-        //                                 }
-        //                                 if (currentData.dose[entry.firstUpdateStatus]) {
-        //                                     currentData.dose[entry.firstUpdateStatus] += 1
-        //                                 }else {
-        //                                     currentData.dose[entry.firstUpdateStatus] = 1
-        //                                 }
-        //                                 if (currentData.vaccine[entry.firstUpdateVaccine]) {
-        //                                     currentData.vaccine[entry.firstUpdateVaccine] += 1
-        //                                 }else {
-        //                                     currentData.vaccine[entry.firstUpdateVaccine] = 1
-        //                                 }
-                                        
-        //                                 resolve(currentData)
-        //                                 return currentData;
-        //                             } else {
-        //                                 let temp = {value:0, gender:{"Male":0, "Female":0, "Others":0}, vaccine:{"Covaxin":0, "Covishield":0, "Sputnik":0, "Zycov-D":0, "Covovax":0, "Corbevax":0}, dose:{"1st Dose":0, "2nd Dose":0, "Precautionary Dose":0}}
-        //                                 temp.value = 1
-        //                                 temp.gender[entry.gender] = 1
-        //                                 temp.dose[entry.firstUpdateStatus] = 1
-        //                                 temp.vaccine[entry.firstUpdateVaccine] = 1
-        //                                 resolve(temp)
-        //                                 return temp;
-        //                             }
-                                    
-        //                         })
-        //                     })
-        //                     tasks.push(promise);
-                                
-        //                 }
-
-        //                 if (entry.thirdUpdateDate && entry.thirdUpdateStatus && entry.thirdUpdateVaccine) {
-        //                     let formattedDate = moment(entry.thirdUpdateDate).format('MMMM Do YYYY - dddd')
-        //                     const writeRef = ref(firebasedatabase, `DATE_WISE_VACCINATION_DATA/${formattedDate}/${entry.district}/${entry.block}`);
-        //                     const promise = new Promise(async (resolve, reject) => {
-        //                         await runTransaction(writeRef, (currentData)=>{
-        //                             if (currentData) {
-        //                                 if (currentData.value) {
-        //                                     currentData.value += 1
-        //                                 } else {
-        //                                     currentData.value = 1
-        //                                 }
-        //                                 if (currentData.gender[entry.gender]) {
-        //                                     currentData.gender[entry.gender] += 1
-        //                                 }else {
-        //                                     currentData.gender[entry.gender] = 1
-        //                                 }
-        //                                 if (currentData.dose[entry.firstUpdateStatus]) {
-        //                                     currentData.dose[entry.firstUpdateStatus] += 1
-        //                                 }else {
-        //                                     currentData.dose[entry.firstUpdateStatus] = 1
-        //                                 }
-        //                                 if (currentData.vaccine[entry.firstUpdateVaccine]) {
-        //                                     currentData.vaccine[entry.firstUpdateVaccine] += 1
-        //                                 }else {
-        //                                     currentData.vaccine[entry.firstUpdateVaccine] = 1
-        //                                 }
-                                        
-        //                                 resolve(currentData)
-        //                                 return currentData;
-        //                             } else {
-        //                                 let temp = {value:0, gender:{"Male":0, "Female":0, "Others":0}, vaccine:{"Covaxin":0, "Covishield":0, "Sputnik":0, "Zycov-D":0, "Covovax":0, "Corbevax":0}, dose:{"1st Dose":0, "2nd Dose":0, "Precautionary Dose":0}}
-        //                                 temp.value = 1
-        //                                 temp.gender[entry.gender] = 1
-        //                                 temp.dose[entry.firstUpdateStatus] = 1
-        //                                 temp.vaccine[entry.firstUpdateVaccine] = 1
-        //                                 resolve(temp)
-        //                                 return temp;
-        //                             }
-                                    
-        //                         })
-        //                     })
-        //                     tasks.push(promise);
-                                
-        //                 }
-        //             }
-        //         }
-        //     } 
-        // })
-
-
-
-
         let temp = []
+        let tempIdenList = []
         let tempWeeksTotal = 0;
         let tempWeeklyData = [{name:dateArray[0], Achieved:0, Target:27}, {name:dateArray[1], Achieved:0, Target:27}, {name:dateArray[2], Achieved:0, Target:27}, {name:dateArray[3], Achieved:0, Target:27}, {name:dateArray[4], Achieved:0, Target:27}, {name:dateArray[5], Achieved:0, Target:27}, {name:dateArray[6], Achieved:0, Target:27}]
+        let tempWeeklyIdenData = [{name:dateArray[0], Achieved:0}, {name:dateArray[1], Achieved:0}, {name:dateArray[2], Achieved:0}, {name:dateArray[3], Achieved:0}, {name:dateArray[4], Achieved:0}, {name:dateArray[5], Achieved:0}, {name:dateArray[6], Achieved:0}]
         const tempGenderData = [{name:"Male", value:0}, {name:"Female", value:0}, {name:"Other", value:0}]
         const tempVaccineData = [{name:"Covaxin", value:0}, {name:"Covishield", value:0}, {name:"Sputnik", value:0}, {name:"Zycov-D", value:0}, {name:"Covovax", value:0}, {name:"Corbevax", value:0}]
         const tempDoseData = [{name:"1st Dose", value:0}, {name:"2nd Dose", value:0}, {name:"Precautionary Dose", value:0}]
@@ -356,6 +209,11 @@ const OperatorEntries = () =>{
                             }
                         }
                     }
+                    const dateFormattedIden = moment(entry.date, "MMMM Do YYYY").format("MMMM Do YYYY - dddd")
+                    if (dateArray.includes(dateFormattedIden) ) {
+                        tempIdenList.push(entry)
+                        tempWeeklyIdenData[dateArray.indexOf(dateFormattedIden)].Achieved += 1
+                    }
                     
                 }
                 
@@ -369,6 +227,9 @@ const OperatorEntries = () =>{
                 setTotalIdentifications(tempIden)
                 setStartDate(dateArray2[0])
                 setEndDate(dateArray2[6])
+                setWeeklyIdenData(tempWeeklyIdenData)
+                setIdenList(tempIdenList.reverse())
+                setVaccList(temp)
                 setLoading("Fetched")
             } else {
                 setLoading("No Data")
@@ -384,6 +245,9 @@ const OperatorEntries = () =>{
         let doseDataTemp = [{name:"1st Dose", value:0}, {name:"2nd Dose", value:0}, {name:"Precautionary Dose", value:0}]
         let totalVaccinationsTemp = 0
         let tempList = []
+        let tempIdenList = []
+        setSelectedTab("VACC")
+        let tempWeeklyIdenData = [{name:startDate, Achieved:0}]
         setLoading("Wait")
         setEntriesList([])
 
@@ -406,6 +270,7 @@ const OperatorEntries = () =>{
             let tempDate = moment(currDate.add(1, 'days').clone().toDate()).format("YYYY-MM-DD")
             dateList.push(tempDate);
             graphDataTemp.push({name:tempDate, Achieved:0, Target:27})
+            tempWeeklyIdenData.push({name:tempDate, Achieved:0})
         }
         
         await get (child(ref(firebasedatabase), `USER_WISE_ENTRIES/${operator.uid}`)).then(async(snapshot)=>{
@@ -507,13 +372,21 @@ const OperatorEntries = () =>{
                             doseDataTemp[2].value += 1
                         }
                     }
+                    const dateFormattedIden = moment(entry.date, "MMMM Do YYYY").format("YYYY-MM-DD")
+                    if (dateList.includes(dateFormattedIden) ) {
+                        tempIdenList.push(entry)
+                        tempWeeklyIdenData[dateList.indexOf(dateFormattedIden)].Achieved += 1
+                    }
                     
                 }
-                setEntriesList(tempList)
+                setEntriesList(tempList.reverse())
                 setWeeklyData(graphDataTemp)
                 setGenderData(genderDataTemp)
                 setVaccineData(vaccineDataTemp)
                 setDoseData(doseDataTemp)
+                setWeeklyIdenData(tempWeeklyIdenData)
+                setIdenList(tempIdenList.reverse())
+                setVaccList(tempList)
                 setLoading("Fetched")
             }
         })
@@ -544,13 +417,12 @@ const OperatorEntries = () =>{
                             <Text mb='2px'>End Date</Text>
                             <input type="date" value={endDate} onChange={(event)=>{setEndDate(event.target.value)}}></input>
                         </div>
-                        
-                        
+
                         <Button style={{marginBottom:0}} onClick={handleSearch}>Search</Button> 
                     </div>
 
                     <div  className='dashboard-graph-container'>
-                        <p className="section-heading">Performance Matrix</p>
+                        <p className="section-heading">Vaccination Performance Matrix</p>
 
                         <div style={{display:"flex", flexDirection:"row"}}>
                             <BarChart width={1000} height={300} data={weeklyDate} margin={{ top: 20, right: 30, left: 20, bottom: 5}}>
@@ -604,11 +476,30 @@ const OperatorEntries = () =>{
                         </div>
                     </div>
 
-                        <p style={{fontWeight:500, fontSize:18, marginBottom:10, marginTop:50}}>Total Entries: {entriesList.length}</p>
+                    <div  className='identification-graph-container'>
+                        <p className="section-heading">Identification Performance Matrix</p>
 
-                        <TableContainer className="table-container">
+                        <BarChart width={1000} height={300} data={weeklyIdenDate} margin={{ top: 20, right: 30, left: 20, bottom: 5}}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="Achieved" stackId="a" fill="#51d93f" />
+                        </BarChart>
+                    </div>
+
+                    <div className="tab-container">
+                        <p className={selectedTab==="VACC"?"selected-tab":"unselected-tab"} onClick={()=>{setSelectedTab("VACC");setEntriesList(vaccList)}}>Vaccination Data</p>
+                        <p className={selectedTab==="IDEN"?"selected-tab":"unselected-tab"} onClick={()=>{setSelectedTab("IDEN");setEntriesList(idenList)}}>Identification Data</p>
+                    </div>
+                        
+                    <p style={{fontWeight:500, fontSize:18, marginBottom:10, marginTop:50}}>Total Entries: {entriesList.length}</p>
+
+                    <TableContainer className="table-container">
                         <Table variant='simple'>
                             <Thead><Tr>
+                                <Th>Entry Date</Th>
                                 <Th>Iden. Date</Th>
                                 <Th>Name</Th>
                                 <Th>Phone Number</Th>
@@ -622,35 +513,198 @@ const OperatorEntries = () =>{
                                 <Th>Third Update Type</Th>
                             </Tr></Thead>
                             
-                                {
-                                    entriesList.map((item, index)=>{
-                                        return(
-                                            <Tbody style={{cursor:"pointer"}} >
-                                                <Tr key={item.key}>
-                                                    <Td>{item.date}</Td>
-                                                    <Td>{item.name}</Td>
-                                                    <Td>{item.phoneNumber}</Td>
-                                                    <Td>{item.village}</Td>
-                                                    <Td>{item.initialStatus}</Td>
-                                                    <Td>{item.firstUpdateDate?moment(item.firstUpdateDate).format('MMMM Do YYYY'):""}</Td>
-                                                    <Td>{item.firstUpdateStatus}</Td>
-                                                    <Td>{item.secondUpdateDate?moment(item.secondUpdateDate).format('MMMM Do YYYY'):""}</Td>
-                                                    <Td>{item.secondUpdateStatus}</Td>
-                                                    <Td>{item.thirdUpdateDate?moment(item.thirdUpdateDate).format('MMMM Do YYYY'):""}</Td>
-                                                    <Td>{item.thirdUpdateStatus}</Td>
-                                                </Tr>
-                                        </Tbody>
-                                    )})
-                                }
+                            {
+                                entriesList.map((item, index)=>{
+                                    return(
+                                        <Tbody style={{cursor:"pointer"}} >
+                                            <Tr key={item.key}>
+                                                <Td>{item.date}</Td>
+                                                <Td>{item.dateDay}</Td>
+                                                <Td>{item.name}</Td>
+                                                <Td>{item.phoneNumber}</Td>
+                                                <Td>{item.village}</Td>
+                                                <Td>{item.initialStatus}</Td>
+                                                <Td>{item.firstUpdateDate?moment(item.firstUpdateDate).format('MMMM Do YYYY'):""}</Td>
+                                                <Td>{item.firstUpdateStatus}</Td>
+                                                <Td>{item.secondUpdateDate?moment(item.secondUpdateDate).format('MMMM Do YYYY'):""}</Td>
+                                                <Td>{item.secondUpdateStatus}</Td>
+                                                <Td>{item.thirdUpdateDate?moment(item.thirdUpdateDate).format('MMMM Do YYYY'):""}</Td>
+                                                <Td>{item.thirdUpdateStatus}</Td>
+                                            </Tr>
+                                    </Tbody>
+                                )})
+                            }
                             
-                        
                         </Table>
                     </TableContainer>
                 </div>
             }
-           
         </div>
     )
 }
 
 export default OperatorEntries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // console.log("in here")
+        // let count  = 0;
+        // const tasks = []
+        // get(child(ref(firebasedatabase), "USER_WISE_ENTRIES")).then(async(snapShot) => {
+           
+        //     if (snapShot.exists()) {
+        //         for (const uid in snapShot.val()) {
+        //             for (const key in snapShot.child(uid).val()) {
+        //                 const entry = snapShot.child(uid).child(key).val()
+        //                 console.log(entry.key)
+        //                 if (entry.firstUpdateDate && entry.firstUpdateVaccine && entry.firstUpdateStatus) {
+        //                     let formattedDate = moment(entry.firstUpdateDate).format('MMMM Do YYYY - dddd')
+        //                     const writeRef = ref(firebasedatabase, `DATE_WISE_VACCINATION_DATA/${formattedDate}/${entry.district}/${entry.block}`);
+        //                     const promise = new Promise(async (resolve, reject) => {
+        //                         await runTransaction(writeRef, (currentData)=>{
+        //                             if (currentData) {
+        //                                 if (currentData.value) {
+        //                                     currentData.value += 1
+        //                                 } else {
+        //                                     currentData.value = 1
+        //                                 }
+        //                                 if (currentData.gender[entry.gender]) {
+        //                                     currentData.gender[entry.gender] += 1
+        //                                 }else {
+        //                                     currentData.gender[entry.gender] = 1
+        //                                 }
+        //                                 if (currentData.dose[entry.firstUpdateStatus]) {
+        //                                     currentData.dose[entry.firstUpdateStatus] += 1
+        //                                 }else {
+        //                                     currentData.dose[entry.firstUpdateStatus] = 1
+        //                                 }
+        //                                 if (currentData.vaccine[entry.firstUpdateVaccine]) {
+        //                                     currentData.vaccine[entry.firstUpdateVaccine] += 1
+        //                                 }else {
+        //                                     currentData.vaccine[entry.firstUpdateVaccine] = 1
+        //                                 }
+                                        
+        //                                 resolve(currentData)
+        //                                 return currentData;
+        //                             } else {
+        //                                 let temp = {value:0, gender:{"Male":0, "Female":0, "Others":0}, vaccine:{"Covaxin":0, "Covishield":0, "Sputnik":0, "Zycov-D":0, "Covovax":0, "Corbevax":0}, dose:{"1st Dose":0, "2nd Dose":0, "Precautionary Dose":0}}
+        //                                 temp.value = 1
+        //                                 temp.gender[entry.gender] = 1
+        //                                 temp.dose[entry.firstUpdateStatus] = 1
+        //                                 temp.vaccine[entry.firstUpdateVaccine] = 1
+        //                                 resolve(temp)
+        //                                 return temp;
+        //                             }
+                                    
+        //                         })
+        //                     })
+        //                     tasks.push(promise);
+                                
+        //                 }
+
+        //                 if (entry.secondUpdateDate && entry.secondUpdateStatus && entry.secondUpdateVaccine) {
+        //                     let formattedDate = moment(entry.secondUpdateDate).format('MMMM Do YYYY - dddd')
+        //                     const writeRef = ref(firebasedatabase, `DATE_WISE_VACCINATION_DATA/${formattedDate}/${entry.district}/${entry.block}`);
+        //                     const promise = new Promise(async (resolve, reject) => {
+        //                         await runTransaction(writeRef, (currentData)=>{
+        //                             if (currentData) {
+        //                                 if (currentData.value) {
+        //                                     currentData.value += 1
+        //                                 } else {
+        //                                     currentData.value = 1
+        //                                 }
+        //                                 if (currentData.gender[entry.gender]) {
+        //                                     currentData.gender[entry.gender] += 1
+        //                                 }else {
+        //                                     currentData.gender[entry.gender] = 1
+        //                                 }
+        //                                 if (currentData.dose[entry.firstUpdateStatus]) {
+        //                                     currentData.dose[entry.firstUpdateStatus] += 1
+        //                                 }else {
+        //                                     currentData.dose[entry.firstUpdateStatus] = 1
+        //                                 }
+        //                                 if (currentData.vaccine[entry.firstUpdateVaccine]) {
+        //                                     currentData.vaccine[entry.firstUpdateVaccine] += 1
+        //                                 }else {
+        //                                     currentData.vaccine[entry.firstUpdateVaccine] = 1
+        //                                 }
+                                        
+        //                                 resolve(currentData)
+        //                                 return currentData;
+        //                             } else {
+        //                                 let temp = {value:0, gender:{"Male":0, "Female":0, "Others":0}, vaccine:{"Covaxin":0, "Covishield":0, "Sputnik":0, "Zycov-D":0, "Covovax":0, "Corbevax":0}, dose:{"1st Dose":0, "2nd Dose":0, "Precautionary Dose":0}}
+        //                                 temp.value = 1
+        //                                 temp.gender[entry.gender] = 1
+        //                                 temp.dose[entry.firstUpdateStatus] = 1
+        //                                 temp.vaccine[entry.firstUpdateVaccine] = 1
+        //                                 resolve(temp)
+        //                                 return temp;
+        //                             }
+                                    
+        //                         })
+        //                     })
+        //                     tasks.push(promise);
+                                
+        //                 }
+
+        //                 if (entry.thirdUpdateDate && entry.thirdUpdateStatus && entry.thirdUpdateVaccine) {
+        //                     let formattedDate = moment(entry.thirdUpdateDate).format('MMMM Do YYYY - dddd')
+        //                     const writeRef = ref(firebasedatabase, `DATE_WISE_VACCINATION_DATA/${formattedDate}/${entry.district}/${entry.block}`);
+        //                     const promise = new Promise(async (resolve, reject) => {
+        //                         await runTransaction(writeRef, (currentData)=>{
+        //                             if (currentData) {
+        //                                 if (currentData.value) {
+        //                                     currentData.value += 1
+        //                                 } else {
+        //                                     currentData.value = 1
+        //                                 }
+        //                                 if (currentData.gender[entry.gender]) {
+        //                                     currentData.gender[entry.gender] += 1
+        //                                 }else {
+        //                                     currentData.gender[entry.gender] = 1
+        //                                 }
+        //                                 if (currentData.dose[entry.firstUpdateStatus]) {
+        //                                     currentData.dose[entry.firstUpdateStatus] += 1
+        //                                 }else {
+        //                                     currentData.dose[entry.firstUpdateStatus] = 1
+        //                                 }
+        //                                 if (currentData.vaccine[entry.firstUpdateVaccine]) {
+        //                                     currentData.vaccine[entry.firstUpdateVaccine] += 1
+        //                                 }else {
+        //                                     currentData.vaccine[entry.firstUpdateVaccine] = 1
+        //                                 }
+                                        
+        //                                 resolve(currentData)
+        //                                 return currentData;
+        //                             } else {
+        //                                 let temp = {value:0, gender:{"Male":0, "Female":0, "Others":0}, vaccine:{"Covaxin":0, "Covishield":0, "Sputnik":0, "Zycov-D":0, "Covovax":0, "Corbevax":0}, dose:{"1st Dose":0, "2nd Dose":0, "Precautionary Dose":0}}
+        //                                 temp.value = 1
+        //                                 temp.gender[entry.gender] = 1
+        //                                 temp.dose[entry.firstUpdateStatus] = 1
+        //                                 temp.vaccine[entry.firstUpdateVaccine] = 1
+        //                                 resolve(temp)
+        //                                 return temp;
+        //                             }
+                                    
+        //                         })
+        //                     })
+        //                     tasks.push(promise);
+                                
+        //                 }
+        //             }
+        //         }
+        //     } 
+        // })

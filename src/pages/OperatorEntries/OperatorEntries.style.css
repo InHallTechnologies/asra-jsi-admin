@@ -15,6 +15,42 @@
     margin-bottom: 30px;
 }
 
+.identification-graph-container {
+    width: 100%;
+    background-color: #F8F8F8;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 350px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 30px;
+}
+
+.tab-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.selected-tab {
+    font-size: 1rem;
+    color: #444;
+    font-weight: 600;
+    border-bottom: #53a86b solid 3px;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.unselected-tab {
+    font-size: 1rem;
+    color: rgb(151, 151, 151);
+    font-weight: 500;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
 .section-heading {
     font-size: 1.1rem;
     font-weight: 500;
